@@ -1,0 +1,19 @@
+<section class="card">
+  <h1>Your cart</h1>
+  <% if @items.any? %>
+    <% @items.each do |item| %>
+      <div class="cart-item">
+        <div>
+          <strong><%= item[:product].name %></strong><br>
+          <span>Qty: <%= item[:quantity] %></span>
+        </div>
+        <div class="admin-actions">
+          <%= button_to "Remove", remove_cart_path(product_id: item[:product].id), method: :delete, class: "btn btn-secondary btn-square small" %>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to "Checkout", new_order_path, class: "btn btn-primary btn-square" %>
+  <% else %>
+    <p>Your cart is empty.</p>
+  <% end %>
+</section>

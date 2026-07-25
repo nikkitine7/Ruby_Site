@@ -1,0 +1,7 @@
+<section class="card">
+  <h1>Order placed successfully</h1>
+  <p>Thank you for your purchase. Your order has been received and is being prepared.</p>
+  <p><strong>Order ID:</strong> <%= @order.id %></p>
+  <%= link_to "View order", order_path(@order), class: "btn btn-primary btn-square" %>
+  <%= link_to "Back to shop", root_path, class: "btn btn-secondary btn-square" %>
+</section>

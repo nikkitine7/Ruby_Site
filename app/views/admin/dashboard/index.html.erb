@@ -1,0 +1,43 @@
+<section class="admin-shell">
+  <div class="admin-summary">
+    <div class="card">
+      <h3>Products</h3>
+      <p><%= @products.count %></p>
+    </div>
+    <div class="card">
+      <h3>Visible catalog</h3>
+      <p>Live</p>
+    </div>
+    <div class="card">
+      <h3>Quick action</h3>
+      <p><%= link_to "Add product", new_admin_product_path, class: "btn btn-primary btn-square small" %></p>
+    </div>
+  </div>
+
+  <section class="card">
+    <div class="section-head">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p>Manage your storefront inventory, pricing, and product content from one place.</p>
+      </div>
+      <%= link_to "Add product", new_admin_product_path, class: "btn btn-primary btn-square" %>
+    </div>
+
+    <% if @products.any? %>
+      <% @products.each do |product| %>
+        <div class="admin-product-row">
+          <div>
+            <strong><%= product.name %></strong><br>
+            <span><%= truncate(product.description, length: 120) %></span>
+          </div>
+          <div class="admin-actions">
+            <%= link_to "Edit", edit_admin_product_path(product), class: "btn btn-secondary btn-square small" %>
+            <%= button_to "Delete", admin_product_path(product), method: :delete, class: "btn btn-primary btn-square small", data: { confirm: "Delete this product?" } %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="empty-state">No products yet. Add your first item to start building the catalog.</p>
+    <% end %>
+  </section>
+</section>

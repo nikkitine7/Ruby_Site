@@ -1,0 +1,18 @@
+<section class="card">
+  <h1>Contact us</h1>
+  <%= form_with model: @contact_message, url: contact_messages_path do |form| %>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, required: true %>
+    </div>
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.email_field :email, required: true %>
+    </div>
+    <div class="field">
+      <%= form.label :message %>
+      <%= form.text_area :message, required: true %>
+    </div>
+    <%= form.submit "Send message", class: "btn btn-primary btn-square" %>
+  <% end %>
+</section>

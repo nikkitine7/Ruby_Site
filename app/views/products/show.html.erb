@@ -1,0 +1,15 @@
+<section class="product-detail">
+  <div class="product-detail-media">
+    <% if @product.image.attached? %>
+      <%= image_tag @product.image, alt: @product.name %>
+    <% else %>
+      <div class="product-placeholder large">No image yet</div>
+    <% end %>
+  </div>
+  <div class="product-detail-info">
+    <h1><%= @product.name %></h1>
+    <p class="price large">$<%= number_with_precision(@product.price, precision: 2, strip_insensitive: true) %></p>
+    <p><%= simple_format(@product.description) %></p>
+    <%= button_to "Add to cart", add_to_cart_product_path(@product), method: :post, class: "btn btn-primary btn-square" %>
+  </div>
+</section>

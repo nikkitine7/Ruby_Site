@@ -1,0 +1,32 @@
+<section class="card">
+  <div class="section-head">
+    <div>
+      <h1>New product</h1>
+      <p>Add a product with its image, description, and pricing.</p>
+    </div>
+  </div>
+  <%= form_with model: @product, url: admin_products_path, html: { multipart: true } do |form| %>
+    <div class="admin-form-grid">
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name, required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :price %>
+        <%= form.number_field :price, step: :any, required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description, required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :image %>
+        <%= form.file_field :image %>
+      </div>
+    </div>
+    <div class="admin-form-actions">
+      <%= form.submit "Create product", class: "btn btn-primary btn-square" %>
+      <%= link_to "Back to dashboard", admin_dashboard_path, class: "btn btn-secondary btn-square" %>
+    </div>
+  <% end %>
+</section>

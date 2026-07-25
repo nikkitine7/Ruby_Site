@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Trick Phish" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <%= yield :head %>
+    <%= stylesheet_link_tag :app %>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container nav-bar">
+        <nav class="top-nav">
+          <%= link_to "Home", root_path %>
+          <%= link_to "Contact", new_contact_message_path %>
+          <% if logged_in? %>
+            <%= button_to "Logout", session_path, method: :delete, class: "btn btn-primary btn-square" %>
+          <% else %>
+            <%= link_to "Login", new_session_path %>
+            <%= link_to "Create account", new_user_path %>
+          <% end %>
+          <%= link_to "Cart (#{@cart_count || 0})", cart_path, class: "cart-link" %>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <% flash.each do |type, message| %>
+        <div class="flash <%= type %>"><%= message %></div>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

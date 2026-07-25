@@ -1,0 +1,9 @@
+<section class="card">
+  <h1>Order details</h1>
+  <p><strong>Status:</strong> <%= @order.status %></p>
+  <p><strong>Email:</strong> <%= @order.email %></p>
+  <p><strong>Shipping to:</strong> <%= @order.shipping_name %></p>
+  <p><strong>Address:</strong> <%= @order.shipping_address %>, <%= @order.shipping_city %>, <%= @order.shipping_state %> <%= @order.shipping_zip %></p>
+  <p><strong>Total:</strong> $<%= number_with_precision(@order.total, precision: 2, strip_insensitive: true) %></p>
+  <%= link_to "Back to shop", root_path, class: "btn btn-secondary btn-square" %>
+</section>

@@ -1,0 +1,36 @@
+<section class="hero">
+  <div class="hero-copy">
+    <div class="hero-actions">
+      <%= link_to "Browse products", products_path, class: "btn btn-primary" %>
+      <%= link_to "Contact us", new_contact_message_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</section>
+
+<section class="products-grid">
+  <% @products.each do |product| %>
+    <article class="product-card">
+      <%= link_to product_path(product) do %>
+        <% if product.image.attached? %>
+          <%= image_tag product.image, alt: product.name %>
+        <% else %>
+          <div class="product-placeholder">No image yet</div>
+        <% end %>
+        <div class="product-card-body">
+          <h3><%= product.name %></h3>
+          <p><%= truncate(product.description, length: 90) %></p>
+          <div class="product-meta">
+            <span class="price">$<%= number_with_precision(product.price, precision: 2, strip_insensitive: true) %></span>
+          </div>
+        </div>
+      <% end %>
+      <div class="product-card-footer">
+        <%= button_to "Add to cart", add_to_cart_product_path(product), method: :post, class: "btn btn-primary small btn-square" %>
+      </div>
+    </article>
+  <% end %>
+</section>
+
+<% if @products.empty? %>
+  <p class="empty-state">No products yet. Add some from the admin panel to fill the catalog.</p>
+<% end %>

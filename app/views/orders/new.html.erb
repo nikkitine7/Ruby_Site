@@ -1,0 +1,30 @@
+<section class="card">
+  <h1>Checkout</h1>
+  <%= form_with model: @order, url: orders_path do |form| %>
+    <div class="field">
+      <%= form.label :email %>
+      <%= form.email_field :email, required: true %>
+    </div>
+    <div class="field">
+      <%= form.label :shipping_name, "Full name" %>
+      <%= form.text_field :shipping_name, required: true %>
+    </div>
+    <div class="field">
+      <%= form.label :shipping_address, "Address" %>
+      <%= form.text_area :shipping_address, required: true %>
+    </div>
+    <div class="field">
+      <%= form.label :shipping_city, "City" %>
+      <%= form.text_field :shipping_city, required: true %>
+    </div>
+    <div class="field">
+      <%= form.label :shipping_state, "State" %>
+      <%= form.text_field :shipping_state, required: true %>
+    </div>
+    <div class="field">
+      <%= form.label :shipping_zip, "ZIP code" %>
+      <%= form.text_field :shipping_zip, required: true %>
+    </div>
+    <%= form.submit "Place order", class: "btn btn-primary btn-square" %>
+  <% end %>
+</section>

@@ -1,0 +1,19 @@
+<section class="card">
+  <div class="section-head">
+    <h1>Admin products</h1>
+    <%= link_to "New product", new_admin_product_path, class: "btn btn-primary btn-square" %>
+  </div>
+
+  <% @products.each do |product| %>
+    <div class="admin-product-row">
+      <div>
+        <strong><%= product.name %></strong><br>
+        <span>$<%= number_with_precision(product.price, precision: 2, strip_insensitive: true) %></span>
+      </div>
+      <div class="admin-actions">
+        <%= link_to "Edit", edit_admin_product_path(product), class: "btn btn-secondary btn-square small" %>
+        <%= button_to "Delete", admin_product_path(product), method: :delete, class: "btn btn-secondary btn-square small" %>
+      </div>
+    </div>
+  <% end %>
+</section>
